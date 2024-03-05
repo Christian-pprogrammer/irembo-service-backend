@@ -13,10 +13,20 @@ export class EmailService {
       },
     });
 
+    console.log(formData);
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    let sendTo: string = formData.emailAddress || 'mpanoc6@gmail.com';
+
+    if (!emailRegex.test(sendTo)) {
+      sendTo = 'mpanoc6@gmail.com';
+    }
+
     // Email content
     const mailOptions = {
       from: 'mpanoc6@gmail.com',
-      to: 'mpanoc6@gmail.com', // Replace with the recipient's email address
+      to: sendTo, // Replace with the recipient's email address
       subject: 'Form Submission',
       html: `
         <h2>Form Data:</h2>
